@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: free5gc-pcf-deployment
+spec:
+  selector:
+    matchLabels:
+      app: free5gc-pcf
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: free5gc-pcf
+      annotations:
+        cni.projectcalico.org/ipAddrs: "[\"192.168.202.105\"]"
+    spec:
+      containers:
+      - name: myapp-container
+        image: tschchin/free5gc-control:latest
+        imagePullPolicy: Always
+        command: ["/bin/sh"]
+        args: ["-c", "./bin/pcf"]
+        stdin: true
+        tty: true
+        volumeMounts:
+        - name: pcfcfg
+          mountPath: /go/src/free5gc/config/pcfcfg.conf
+          subPath: pcfcfg.conf
+        - name: free5gc
+          mountPath: /go/src/free5gc/config/free5GC.conf
+          subPath: free5GC.conf
+      volumes:
+      - name: pcfcfg
+        configMap:
+          name: free5gc-configmap
+          items:
+          - key: pcfcfg.conf
+            path: pcfcfg.conf
+      - name: free5gc
+        configMap:
+          name: free5gc-configmap
+          items:
+          - key: free5GC.conf
+            path: free5GC.conf
