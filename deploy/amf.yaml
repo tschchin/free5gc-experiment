@@ -1,3 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:  
+  name: amf-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 30002
+    targetPort: 38412
+    nodePort: 30002
+  selector:
+    app: free5gc-amf-deployment
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:

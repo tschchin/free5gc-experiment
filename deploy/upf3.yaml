@@ -1,3 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: upf3-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 30005
+    targetPort: 2152
+    nodePort: 30005
+    protocol: UDP
+  selector:
+    app: free5gc-upf3-deployment
+---
 apiVersion: apps/v1 
 kind: Deployment
 metadata:

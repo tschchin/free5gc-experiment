@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
   free5GC.conf: |
-    db_uri: mongodb://mongodb-svc/free5GC
+    db_uri: mongodb://192.168.1.155:30001/free5GC
     
     #all logging levels
     #panic
@@ -168,7 +168,7 @@ data:
     
     configuration:
       MongoDBName: "free5gc"
-      MongoDBUrl: "mongodb://mongodb-svc"
+      MongoDBUrl: "mongodb://192.168.1.155:30001"
       DefaultServiceIP: 192.168.202.101
       sbi:
         scheme: https
@@ -555,7 +555,7 @@ data:
             key: free5gc/support/TLS/udr.key
       mongodb:
         name: free5gc
-        url: mongodb://mongodb-svc:27017
+        url: mongodb://192.168.1.155:27017
       nrfUri: https://192.168.202.101:29510
   upfcfg1.yaml: |
     info:
