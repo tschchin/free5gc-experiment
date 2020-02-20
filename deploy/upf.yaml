@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: apps/v1 
 kind: Deployment
 metadata:
   name: free5gc-upf-deployment
@@ -14,31 +14,32 @@ spec:
       annotations:
         cni.projectcalico.org/ipAddrs: "[\"192.168.202.109\"]"
     spec:
-      containers:
-      - name: myapp-container
-        image: tschchin/free5gc-control:latest
-        imagePullPolicy: Always
+      containers:      
+      - name: upf
+        image: tschchin/free5gc-user:latest
+        securityContext:
+          privileged: true
         command: ["/bin/sh"]
-        args: ["-c", "./bin/upf"]
+        args: ["-c", "./bin/free5gc-upfd"]
         stdin: true
         tty: true
         volumeMounts:
-        - name: upfcfg
-          mountPath: /go/src/free5gc/config/upfcfg.conf
-          subPath: upfcfg.conf
-        - name: free5gc
-          mountPath: /go/src/free5gc/config/free5GC.conf
-          subPath: free5GC.conf
+          - name: upfcfg
+            mountPath: /go/src/free5gc/src/upf/build/config/upfcfg.yaml
+            subPath: upfcfg.yaml
+          - name: free5gc
+            mountPath: /go/src/free5gc/config/free5GC.conf
+            subPath: free5GC.conf
       volumes:
-      - name: upfcfg
-        configMap:
-          name: free5gc-configmap
-          items:
-          - key: upfcfg.conf
-            path: upfcfg.conf
-      - name: free5gc
-        configMap:
-          name: free5gc-configmap
-          items:
-          - key: free5GC.conf
-            path: free5GC.conf
+        - name: upfcfg
+          configMap:
+            name: free5gc-configmap
+            items: 
+              - key: upfcfg.yaml
+                path: upfcfg.yaml
+        - name: free5gc
+          configMap:
+            name: free5gc-configmap
+            items: 
+              - key: free5GC.conf
+                path: free5GC.conf

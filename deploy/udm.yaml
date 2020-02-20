@@ -15,7 +15,7 @@ spec:
         cni.projectcalico.org/ipAddrs: "[\"192.168.202.106\"]"
     spec:
       containers:
-      - name: myapp-container
+      - name: udm
         image: tschchin/free5gc-control:latest
         imagePullPolicy: Always
         command: ["/bin/sh"]
