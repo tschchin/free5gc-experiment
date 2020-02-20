@@ -12,10 +12,10 @@ spec:
       labels:
         app: free5gc-upf
       annotations:
-        cni.projectcalico.org/ipAddrs: "[\"192.168.202.109\"]"
+        cni.projectcalico.org/ipAddrs: "[\"192.168.202.110\"]"
     spec:
       containers:      
-      - name: upf
+      - name: upf2
         image: tschchin/free5gc-user:latest
         securityContext:
           privileged: true
@@ -35,7 +35,7 @@ spec:
           configMap:
             name: free5gc-configmap
             items: 
-              - key: upfcfg.yaml
+              - key: upfcfg2.yaml
                 path: upfcfg.yaml
         - name: free5gc
           configMap:

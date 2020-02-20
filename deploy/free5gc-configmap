@@ -138,6 +138,8 @@ data:
         addr: 192.168.202.103
       upf:
         - addr: 192.168.202.109
+        - addr: 192.168.202.110
+        - addr: 192.168.202.111
       ue_subnet: 60.60.0.0/16
       nrfUri: https://192.168.202.101:29510
   ausfcfg.conf: |
@@ -555,7 +557,7 @@ data:
         name: free5gc
         url: mongodb://mongodb-svc:27017
       nrfUri: https://192.168.202.101:29510
-  upfcfg.yaml: |
+  upfcfg1.yaml: |
     info:
       version: 1.0.0
       description: UPF configuration
@@ -573,7 +575,45 @@ data:
 
       apn_list:
         - cidr: 60.60.0.0/24
-          apn: internet
+          apn: internet1
+  upfcfg2.yaml: |
+    info:
+      version: 1.0.0
+      description: UPF configuration
+
+    configuration:
+      # debugLevel: panic|fatal|error|warn|info|debug|trace
+      debugLevel: info
+
+      pfcp:
+        - addr: 192.168.202.110
+
+      gtpu:
+        - addr: 192.168.202.110
+        # - name: upf.5gc.nctu.me
+
+      apn_list:
+        - cidr: 60.60.0.0/24
+          apn: internet2
+  upfcfg3.yaml: |
+    info:
+      version: 1.0.0
+      description: UPF configuration
+
+    configuration:
+      # debugLevel: panic|fatal|error|warn|info|debug|trace
+      debugLevel: info
+
+      pfcp:
+        - addr: 192.168.202.111
+
+      gtpu:
+        - addr: 192.168.202.111
+        # - name: upf.5gc.nctu.me
+
+      apn_list:
+        - cidr: 60.60.0.0/24
+          apn: internet3
 
 kind: ConfigMap
 metadata:
