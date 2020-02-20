@@ -8,4 +8,6 @@ sudo kubectl delete deployment free5gc-pcf-deployment
 sudo kubectl delete deployment free5gc-udm-deployment
 sudo kubectl delete deployment free5gc-nssf-deployment
 sudo kubectl delete deployment free5gc-ausf-deployment
-sudo kubectl delete deployment free5gc-upf-deployment
+sudo kubectl delete deployment free5gc-upf1-deployment
+sudo kubectl delete deployment free5gc-upf2-deployment
+sudo kubectl delete deployment free5gc-upf3-deployment

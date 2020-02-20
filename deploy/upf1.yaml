@@ -1,7 +1,7 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: free5gc-upf-deployment
+  name: free5gc-upf1-deployment
 spec:
   selector:
     matchLabels:

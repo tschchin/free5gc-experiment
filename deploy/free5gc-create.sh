@@ -1,7 +1,11 @@
 #!/bin/bash
 sudo kubectl apply -f free5gc-configmap
 sleep 2s
-sudo kubectl apply -f upf.yaml
+sudo kubectl apply -f upf1.yaml
+sleep 2s
+sudo kubectl apply -f upf2.yaml
+sleep 2s
+sudo kubectl apply -f upf3.yaml
 sleep 2s
 sudo kubectl apply -f nrf.yaml
 sleep 2s
