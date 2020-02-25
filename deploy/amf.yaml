@@ -8,6 +8,7 @@ spec:
   - port: 30002
     targetPort: 38412
     nodePort: 30002
+    protocol: SCTP
   selector:
     app: free5gc-amf-deployment
 ---
